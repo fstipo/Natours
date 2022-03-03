@@ -58,11 +58,14 @@ body {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center; /* when button is inline-block"*/
 }
 
 .heading-primary {
   color: #fff;
   text-transform: uppercase;
+  backface-visibility: hidden; /* fix if animation is shaking*/
+  margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -70,6 +73,13 @@ body {
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+  animation-name: moveLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /*
+  animation-delay: 3s;    /wait for 3 sec*/
+  /* animation-iteration-count: 5;  /repeat 5 times*/
+  /*animation works - at hover also*/
 }
 
 .heading-primary-sub {
@@ -77,4 +87,60 @@ body {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+  animation: moveRight 1s ease-out;
+}
+
+@keyframes moveLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.btn:link,
+.btn:visited {
+  display: inline-block; /* for padding*/
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 20px 40px;
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
 }
